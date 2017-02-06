@@ -26,7 +26,6 @@
 
 (defn train-intents [samples cutoff iterations]
   (util/with-temp-file [training-file "intent-training" "txt"]
-    (print training-file)
     (write-intent-samples-to-file samples training-file)
     (let [ds (com.lemonodor.lewis.train.CategoryDataStream. (into-array [training-file]) nil)
           bowfg (BagOfWordsFeatureGenerator.)
@@ -39,14 +38,14 @@
 (defn predict-intents [text model]
   (let [categorizer (DocumentCategorizerME. model (into-array [(BagOfWordsFeatureGenerator.)]))
         tokens (.tokenize SimpleTokenizer/INSTANCE text)
-        probs (.categorize categorizer tokens)]
-    (println probs)
-    (println (type probs))
-    (sort-by second
-             >
-             (map (fn [i]
-                    [(.getCategory categorizer i) (aget probs i)])
-                  (range (.getNumberOfCategories categorizer))))))
+        probs (.categorize categorizer tokens)
+        predictions
+        (sort-by second
+                 >
+                 (map (fn [i]
+                        [(.getCategory categorizer i) (aget probs i)])
+                      (range (.getNumberOfCategories categorizer))))]
+    predictions))
 
 #_(def intent-model
         (com.lemonodor.lewis.train/train-intents
@@ -80,7 +79,6 @@
   (let [finder (NameFinderME. model)
         tokens (.tokenize SimpleTokenizer/INSTANCE text)
         spans (.find finder tokens)]
-    (println (seq tokens))
     (map (fn [span]
            [(.getStart span) (.getEnd span) (.getProb span)])
          (seq spans))))
