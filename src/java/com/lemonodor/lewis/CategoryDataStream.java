@@ -1,4 +1,4 @@
-package com.lemonodor.lewis.train;
+package com.lemonodor.lewis;
 
 import java.io.BufferedReader;
 import java.io.File;

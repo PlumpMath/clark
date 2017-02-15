@@ -1,6 +1,8 @@
 (ns com.lemonodor.lewis.util
 )
 
+(set! *warn-on-reflection* true)
+
 
 (defn temp-file [prefix suffix]
   (java.io.File/createTempFile prefix suffix))
