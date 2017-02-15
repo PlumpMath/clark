@@ -1,4 +1,4 @@
-(ns com.lemonodor.lewis.util
+(ns com.lemonodor.clark.util
 )
 
 (set! *warn-on-reflection* true)

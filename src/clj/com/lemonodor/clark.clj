@@ -1,10 +1,10 @@
-(ns com.lemonodor.lewis
+(ns com.lemonodor.clark
   (:require
-   [com.lemonodor.lewis.util :as util]
+   [com.lemonodor.clark.util :as util]
    [clojure.java.io :as io]
    [clojure.tools.logging :as log])
   (:import
-   [com.lemonodor.lewis CategoryDataStream]
+   [com.lemonodor.clark CategoryDataStream]
    [opennlp.tools.util
     Span
     TrainingParameters]
@@ -75,14 +75,14 @@
     predictions))
 
 #_(def intent-model
-        (com.lemonodor.lewis.train/train-intents
+        (com.lemonodor.clark.train/train-intents
          [["WhereTaxi" ["How far away is my taxi?"
                         "How far away is my cab?"]]
           ["Help" ["Help" "Help me"]]]
          1
          100))
 
-#_(com.lemonodor.lewis.train/predict-intents "help me" intent-model)
+#_(com.lemonodor.clark.train/predict-intents "help me" intent-model)
 
 
 (defn write-entity-samples-to-file [samples file]
@@ -111,7 +111,7 @@
          (seq spans))))
 
 #_(def drink-model
-    (com.lemonodor.lewis.train/train-entity-extractor
+    (com.lemonodor.clark.train/train-entity-extractor
      ["give me a <START:drink> beer <END>"
       "can i have a <START:drink> beer <END>"
       "i ' ll have a <START:drink> beer <END> please"
@@ -127,5 +127,5 @@
      1
      100))
 
-#_(com.lemonodor.lewis.train/predict-entities "i'll have a vodka" drink-model)
-#_(com.lemonodor.lewis.train/predict-entities "i'll have a martini please" drink-model)
+#_(com.lemonodor.clark.train/predict-entities "i'll have a vodka" drink-model)
+#_(com.lemonodor.clark.train/predict-entities "i'll have a martini please" drink-model)

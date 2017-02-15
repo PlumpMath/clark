@@ -1,4 +1,4 @@
-# com.lemonodor.lewis
+# com.lemonodor.clark
 
 A Clojure library designed to ... well, that part is up to you.
 

@@ -1,4 +1,4 @@
-(defproject com.lemonodor.lewis "0.1.0-SNAPSHOT"
+(defproject com.lemonodor.clark "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
